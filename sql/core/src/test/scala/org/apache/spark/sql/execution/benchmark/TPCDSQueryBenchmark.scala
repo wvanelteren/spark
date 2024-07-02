@@ -49,13 +49,7 @@ object TPCDSQueryBenchmark extends SqlBasedBenchmark with Logging {
 
   override def getSparkSession: SparkSession = {
     val conf = new SparkConf()
-      .setMaster(System.getProperty("spark.sql.test.master", "local[1]"))
-      .setAppName("test-sql-context")
       .set("spark.sql.parquet.compression.codec", "snappy")
-      .set("spark.sql.shuffle.partitions", System.getProperty("spark.sql.shuffle.partitions", "4"))
-      .set("spark.driver.memory", "3g")
-      .set("spark.executor.memory", "3g")
-      .set("spark.sql.autoBroadcastJoinThreshold", (20 * 1024 * 1024).toString)
       .set("spark.sql.crossJoin.enabled", "true")
       .set("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
       .set("spark.kryo.registrationRequired", "true")
